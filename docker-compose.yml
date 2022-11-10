@@ -1,0 +1,13 @@
+version: "3"
+services:
+  php:
+    tty: true # to keep container started
+    build: .
+    volumes:
+      - ../../:/project
+      - ./php.ini:/usr/local/etc/php/php.ini
+    environment:
+      FTP_HOST: ${FTP_HOST}
+      FTP_USERNAME: ${FTP_USERNAME}
+      FTP_PASSWORD: ${FTP_PASSWORD}
+      PHP_IDE_CONFIG: serverName=localhost

@@ -8,7 +8,7 @@ $ftpUsername = $cliArguments[2];
 $ftpPassword = $cliArguments[3];
 $action = $cliArguments[4];
 $sourceFolder = $cliArguments[5];
-$targetFolder = $cliArguments[6];
+$targetFolder = $cliArguments[6] ?? null;
 $ftp = new FTP($ftpHost, $ftpUsername, $ftpPassword);
 
 if ($action === 'clearFolder') {

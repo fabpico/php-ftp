@@ -7,7 +7,7 @@
 ## Usage
 
 1. Bash into php `docker-compose up -d`, `docker-compose exec php bash`.
-2. Run command `php cli.php [host] [username] [password] [action] [sourceFolder] [targetFolder]`
+2. Run command `cd project`, `php cli.php [host] [username] [password] [action] [sourceFolder] [targetFolder]`
 
 ### Available commands
 

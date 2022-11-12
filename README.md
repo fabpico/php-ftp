@@ -17,4 +17,4 @@
 
 #### uploadFolder - Remove content of source folder to target folder
 
-`php cli.php example.com exampleUsername examplePassword uploadFolder /../../../build /httpdocs`
+`php cli.php example.com exampleUsername examplePassword uploadFolder /build /httpdocs`

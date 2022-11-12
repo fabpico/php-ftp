@@ -4,7 +4,7 @@ services:
     tty: true # to keep container started
     build: .
     volumes:
-      - ../../:/project
+      - ./:/project
       - ./php.ini:/usr/local/etc/php/php.ini
     environment:
       PHP_IDE_CONFIG: serverName=localhost

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-require_once "FTP.php";
+require_once __DIR__ . "/src/FTP.php";
 
 $cliArguments = $argv;
 $ftpHost = $cliArguments[1];

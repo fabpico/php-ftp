@@ -4,7 +4,10 @@ services:
     tty: true # to keep container started
     build: .
     volumes:
-      - ${MOUNT_PATH}:/project
+      - ${MOUNT_PATH}:/ftp
       - ./php.ini:/usr/local/etc/php/php.ini
     environment:
       PHP_IDE_CONFIG: serverName=localhost
+      FTP_HOST: ${FTP_HOST}
+      FTP_USERNAME: ${FTP_USERNAME}
+      FTP_PASSWORD: ${FTP_PASSWORD}

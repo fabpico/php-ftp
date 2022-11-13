@@ -1,20 +1,28 @@
 # PHP FTP
 
+A lightweight tool, to execute FTP commands over the CLI.
+
 ## Requirements
 
 - Docker
 
 ## Configure
 
+### Environment variables
+
 Create a `.env` file in the project root (see `.env.sample`).
 
-- `MOUNT_PATH`: General usage is current directory `./`. You may want to access files more high in the tree, so use
-  e.g. `../../`.
+- `FTP_HOST`
+- `FTP_USERNAME`
+- `FTP_PASSWORD`
+- `MOUNT_PATH`
+    - General usage is current directory `./`.  
+      You may want to access files more high in the tree, so use e.g. `../../`.
 
 ## Usage
 
 1. Bash into php `docker-compose up -d`, `docker-compose exec php bash`.
-2. Run command `cd project`, `php cli.php [host] [username] [password] [action] [sourceFolder] [targetFolder]`
+2. Run command, `php ftp/cli.php [action] [sourceFolder] [targetFolder]`
 
 ### Commands
 
@@ -22,10 +30,10 @@ Create a `.env` file in the project root (see `.env.sample`).
 
 Remove content of source folder recursively.
 
-`php cli.php example.com exampleUsername examplePassword clearFolder /httpdocs`
+Example: `php ftp/cli.php clearFolder /httpdocs`
 
 #### uploadFolder
 
 Upload content of source folder to target folder.
 
-`php cli.php example.com exampleUsername examplePassword uploadFolder /build /httpdocs`
+Example: `php ftp/cli.php uploadFolder /build /httpdocs`

@@ -3,12 +3,12 @@
 require_once __DIR__ . "/src/FTP.php";
 
 $cliArguments = $argv;
-$ftpHost = $cliArguments[1];
-$ftpUsername = $cliArguments[2];
-$ftpPassword = $cliArguments[3];
-$action = $cliArguments[4];
-$sourceFolder = $cliArguments[5];
-$targetFolder = $cliArguments[6] ?? null;
+$ftpHost = $_ENV['FTP_HOST'];
+$ftpUsername = $_ENV['FTP_USERNAME'];
+$ftpPassword = $_ENV['FTP_PASSWORD'];
+$action = $cliArguments[1];
+$sourceFolder = $cliArguments[2];
+$targetFolder = $cliArguments[3] ?? null;
 $ftp = new FTP($ftpHost, $ftpUsername, $ftpPassword);
 
 if ($action === 'clearFolder') {

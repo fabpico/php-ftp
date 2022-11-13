@@ -21,33 +21,38 @@ final class FTP
             return !in_array($file, ['.', '..']);
         });
         foreach ($childPaths as $childPath) {
-            $childPathFragments = explode('/', $childPath);
-            $file = end($childPathFragments);
-            $isFolder = !str_contains($file, '.');
-            if ($isFolder) {
-                $this->clearFolder($childPath);
-                ftp_rmdir($this->connection, $childPath);
-                continue;
-            }
-            ftp_delete($this->connection, $childPath);
+            $this->remove($childPath);
         }
     }
 
-    public function uploadFolder(string $sourceFolderPath, string $targetFolderPath): void
+    public function uploadFolder(string $remoteFolderPath, string $localFolderPath): void
     {
-        $files = scandir($sourceFolderPath);
+        $files = scandir($localFolderPath);
         foreach ($files as $file) {
             if (in_array($file, ['.', '..'])) {
                 continue;
             }
-            $sourceFilePath = "$sourceFolderPath/$file";
-            $targetFilePath = "$targetFolderPath/$file";
-            if (is_dir($sourceFilePath)) {
-                ftp_mkdir($this->connection, $targetFilePath);
-                $this->uploadFolder($sourceFilePath, $targetFilePath);
+            $localFilePath = "$localFolderPath/$file";
+            $remoteFilePath = "$remoteFolderPath/$file";
+            if (is_dir($localFilePath)) {
+                ftp_mkdir($this->connection, $remoteFilePath);
+                $this->uploadFolder($remoteFilePath, $localFilePath);
                 continue;
             }
-            ftp_put($this->connection, $targetFilePath, $sourceFilePath);
+            ftp_put($this->connection, $remoteFilePath, $localFilePath);
         }
+    }
+
+    public function remove(string $remotePath): void
+    {
+        $pathFragments = explode('/', $remotePath);
+        $file = end($pathFragments);
+        $isFolder = !str_contains($file, '.');
+        if ($isFolder) {
+            $this->clearFolder($remotePath);
+            ftp_rmdir($this->connection, $remotePath);
+            return;
+        }
+        ftp_delete($this->connection, $remotePath);
     }
 }

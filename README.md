@@ -2,6 +2,10 @@
 
 A lightweight tool, to execute FTP commands over the CLI.
 
+## Usecase example
+
+Deployment of web applications on webservers with limited access possibilities.
+
 ## Requirements
 
 - Docker
